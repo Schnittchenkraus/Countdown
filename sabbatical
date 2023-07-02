@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sabbatical Countdown</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      text-align: center;
+      background: url('https://www.state.gov/wp-content/uploads/2019/04/Singpore-2560x1319.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.3); /* Less dark background */
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      font-family: 'Cinzel', serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .countdown {
+      font-size: 3em;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 1em;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+      color: #333;
+      margin-bottom: 1em;
+    }
+    .legend {
+      font-size: 1.5em;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Countdown Sabbatical</h1> <!-- Changed title -->
+    <div id="countdown" class="countdown"></div>
+    <div class="legend">Monate : Wochen : Tage</div>
+  </div>
+
+  <script>
+    // Festgelegtes Datum
+    var countDownDate = new Date("Dec 26, 2023 00:00:00").getTime();
+
+    // Update des Countdowns jede Sekunde
+    var countdownfunction = setInterval(function() {
+      // Heutiges Datum und Zeit
+      var now = new Date().getTime();
+    
+      // Findet den Abstand zwischen jetzt und dem Countdown-Datum
+      var distance = countDownDate - now;
+    
+      // Berechnungen für Monate, Wochen, Tage
+      var months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
+      var weeks = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
+      var days = Math.floor((distance % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+    
+      // Zeigt das Resultat im Element mit id="countdown"
+      document.getElementById("countdown").innerHTML = months + ":" + weeks + ":" + days;
+    
+      // Wenn der Countdown abgelaufen ist, zeige Text 
+      if (distance < 0) {
+        clearInterval(countdownfunction);
+        document.getElementById("countdown").innerHTML = "Genieße dein Sabbatical!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
