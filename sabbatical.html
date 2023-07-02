@@ -53,26 +53,33 @@
 
   <script>
     // Festgelegtes Datum
-    var countDownDate = new Date("Dec 26, 2023 00:00:00").getTime();
+    var countDownDate = new Date("Dec 26, 2023 00:00:00");
 
     // Update des Countdowns jede Sekunde
     var countdownfunction = setInterval(function() {
       // Heutiges Datum und Zeit
-      var now = new Date().getTime();
+      var now = new Date();
     
-      // Findet den Abstand zwischen jetzt und dem Countdown-Datum
-      var distance = countDownDate - now;
-    
-      // Berechnungen für Monate, Wochen, Tage
-      var months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
-      var weeks = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
-      var days = Math.floor((distance % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
-    
+      // Berechnungen für Jahre, Monate und Tage
+      var years = countDownDate.getFullYear() - now.getFullYear();
+      var months = countDownDate.getMonth() - now.getMonth();
+      var days = countDownDate.getDate() - now.getDate();
+      
+      if (days < 0) {
+        months--;
+        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      }
+      
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
       // Zeigt das Resultat im Element mit id="countdown"
-      document.getElementById("countdown").innerHTML = months + ":" + weeks + ":" + days;
+      document.getElementById("countdown").innerHTML = (years * 12 + months) + ":" + Math.floor(days / 7) + ":" + (days % 7);
     
       // Wenn der Countdown abgelaufen ist, zeige Text 
-      if (distance < 0) {
+      if (years < 0 || (years === 0 && months <= 0 && days <= 0)) {
         clearInterval(countdownfunction);
         document.getElementById("countdown").innerHTML = "Genieße dein Sabbatical!";
       }
