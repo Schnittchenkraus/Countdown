@@ -46,7 +46,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Countdown Sabbatical</h1> <!-- Changed title -->
+    <h1>Countdown Sabbatical</h1>
     <div id="countdown" class="countdown"></div>
     <div class="legend">Monate : Wochen : Tage</div>
   </div>
@@ -55,8 +55,7 @@
     // Festgelegtes Datum
     var countDownDate = new Date("Dec 26, 2023 00:00:00");
 
-    // Update des Countdowns jede Sekunde
-    var countdownfunction = setInterval(function() {
+    function updateCountdown() {
       // Heutiges Datum und Zeit
       var now = new Date();
     
@@ -83,7 +82,11 @@
         clearInterval(countdownfunction);
         document.getElementById("countdown").innerHTML = "Genieße dein Sabbatical!";
       }
-    }, 1000);
+    }
+    
+    // Update des Countdowns jede Sekunde
+    updateCountdown(); // Call the function once before setting the interval
+    var countdownfunction = setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
