@@ -1,6 +1,3 @@
-Selbstverständlich, hier ist der vollständige HTML-Code mit den angepassten JavaScript-Teil:
-
-```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,9 +79,7 @@ Selbstverständlich, hier ist der vollständige HTML-Code mit den angepassten Ja
       var hours = 24 - now.getHours() - 1;
       
       // Zeigt das Resultat im Element mit id="countdown"
-      document.getElementById("countdown").innerHTML = (years * 12 + months
-
-) + ":" + Math.floor(days / 7) + ":" + (days % 7) + ":" + hours;
+      document.getElementById("countdown").innerHTML = (years * 12 + months) + ":" + Math.floor(days / 7) + ":" + (days % 7) + ":" + hours;
       
       // Wenn der Countdown abgelaufen ist, zeige Text 
       if (years < 0 || (years === 0 && months <= 0 && days <= 0 && hours <= 0)) {
@@ -95,6 +90,3 @@ Selbstverständlich, hier ist der vollständige HTML-Code mit den angepassten Ja
   </script>
 </body>
 </html>
-```
-
-Jetzt sollte der Countdown bis zum Renteneintritt präzise die verbleibenden Monate, Wochen, Tage und Stunden anzeigen.
