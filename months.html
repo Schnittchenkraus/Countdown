@@ -55,8 +55,7 @@
     // Festgelegtes Datum
     var countDownDate = new Date("Aug 1, 2025 00:00:00");
 
-    // Update des Countdowns jede Sekunde
-    var countdownfunction = setInterval(function() {
+    function updateCountdown() {
       // Heutiges Datum und Zeit
       var now = new Date();
     
@@ -74,7 +73,7 @@
         years--;
         months += 12;
       }
-
+      
       // Berechnungen für Stunden
       var hours = 24 - now.getHours() - 1;
       
@@ -86,7 +85,11 @@
         clearInterval(countdownfunction);
         document.getElementById("countdown").innerHTML = "Herzlichen Glückwunsch zum Renteneintritt!";
       }
-    }, 1000);
+    }
+    
+    // Update des Countdowns jede Sekunde
+    updateCountdown(); // Aufruf der Funktion einmal vor dem Einstellen des Intervalls
+    var countdownfunction = setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
