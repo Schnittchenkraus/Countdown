@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sabbatical Countdown</title>
+  <title>Renteneintritt Countdown</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       text-align: center;
-      background: url('https://www.state.gov/wp-content/uploads/2019/04/Singpore-2560x1319.jpg') no-repeat center center fixed;
+      background: url('https://www.adacreisen.de/dam/jcr:829012d8-4ea1-47eb-96e9-f400e4251ce0/Italien_Toskana_G-1273819763.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Roboto', sans-serif;
       color: #fff;
@@ -18,7 +18,7 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.3); /* Less dark background */
+      background-color: rgba(0, 0, 0, 0.5);
     }
     h1 {
       font-size: 3em;
@@ -46,14 +46,14 @@
 </head>
 <body>
   <div class="container">
-    <h1>Countdown Sabbatical</h1>
+    <h1>Countdown zur Rente</h1>
     <div id="countdown" class="countdown"></div>
     <div class="legend">Monate : Wochen : Tage</div>
   </div>
 
   <script>
     // Festgelegtes Datum
-    var countDownDate = new Date("Dec 26, 2023 00:00:00");
+    var countDownDate = new Date("Aug 1, 2025 00:00:00");
 
     function updateCountdown() {
       // Heutiges Datum und Zeit
@@ -73,19 +73,23 @@
         years--;
         months += 12;
       }
-
+      
       // Zeigt das Resultat im Element mit id="countdown"
-      document.getElementById("countdown").innerHTML = (years * 12 + months) + ":" + Math.floor(days / 7) + ":" + (days % 7);
-    
+      var totalMonths = (years * 12 + months).toString().padStart(2, '0');
+      var weeks = Math.floor(days / 7).toString().padStart(2, '0');
+      var remainingDays = (days % 7).toString().padStart(2, '0');
+
+      document.getElementById("countdown").innerHTML = totalMonths + ":" + weeks + ":" + remainingDays;
+      
       // Wenn der Countdown abgelaufen ist, zeige Text 
       if (years < 0 || (years === 0 && months <= 0 && days <= 0)) {
         clearInterval(countdownfunction);
-        document.getElementById("countdown").innerHTML = "Genieße dein Sabbatical!";
+        document.getElementById("countdown").innerHTML = "Herzlichen Glückwunsch zum Renteneintritt!";
       }
     }
     
     // Update des Countdowns jede Sekunde
-    updateCountdown(); // Call the function once before setting the interval
+    updateCountdown(); // Aufruf der Funktion einmal vor dem Einstellen des Intervalls
     var countdownfunction = setInterval(updateCountdown, 1000);
   </script>
 </body>
