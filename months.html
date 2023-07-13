@@ -74,11 +74,20 @@
         months += 12;
       }
       
+      // Ensure no negative numbers
+      if (years < 0) years = 0;
+      if (months < 0) months = 0;
+      if (days < 0) days = 0;
+
       // Zeigt das Resultat im Element mit id="countdown"
-      document.getElementById("countdown").innerHTML = (years * 12 + months) + ":" + Math.floor(days / 7) + ":" + (days % 7);
+      var totalMonths = (years * 12 + months).toString().padStart(2, '0');
+      var weeks = Math.floor(days / 7).toString().padStart(2, '0');
+      var remainingDays = (days % 7).toString().padStart(2, '0');
+
+      document.getElementById("countdown").innerHTML = totalMonths + ":" + weeks + ":" + remainingDays;
       
       // Wenn der Countdown abgelaufen ist, zeige Text 
-      if (years < 0 || (years === 0 && months <= 0 && days <= 0)) {
+      if (years <= 0 && months <= 0 && days <= 0) {
         clearInterval(countdownfunction);
         document.getElementById("countdown").innerHTML = "Herzlichen Glückwunsch zum Renteneintritt!";
       }
